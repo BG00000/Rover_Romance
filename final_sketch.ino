@@ -5,7 +5,7 @@
 # define echoPinF 4      // Forward Sensor
 # define trigPinF 5      // Forward Sensor
 # define echoPinL 7      // Left Sensor
-# define trigPinL 8      // Left Sensor
+# define trigPinL 6      // Left Sensor
 #define motorPin1 8      // Motor driver input 1
 #define motorPin2 9      // Motor driver input 2
 #define motorPin3 10     // Motor driver input 3
@@ -40,9 +40,9 @@ void setup() {
 
 void loop() {
   // Measure distance using ultrasonic sensors
-  double frontDistance = sonarF.ping_cm()
-  double leftDistance = sonarL.ping_cm()
-  double rightDistance = sonarR.ping_cm()
+  double frontDistance = sonarF.ping_cm();
+  double leftDistance = sonarL.ping_cm();
+  double rightDistance = sonarR.ping_cm();
   
   // set enable pins to HIGH
   digitalWrite(enablePin1, HIGH);
