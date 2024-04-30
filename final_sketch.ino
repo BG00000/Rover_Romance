@@ -13,7 +13,7 @@
 #define enablePin1 12    // Enable pin for motor 1
 #define enablePin2 13    // Enable pin for motor 2
 
-#define distanceThreshold 7   // Threshold distance to detect obstacle (in centimeters)
+#define distanceThreshold 20   // Threshold distance to detect obstacle (in centimeters)
 #define turnDuration 1675      // Duration for turning (in milliseconds)
 
 NewPing sonarR(trigPinR, echoPinR, 400);
@@ -69,7 +69,7 @@ void loop() {
   }
 }
 
-  void turnLeft() {
+  void turnRight() {
   // Set motor direction for left turn
   digitalWrite(motorPin1, LOW);
   digitalWrite(motorPin2, HIGH);
@@ -85,7 +85,7 @@ void loop() {
   digitalWrite(motorPin4, LOW);
 }
 
-void turnRight() {
+void turnLeft() {
   // Set motor direction for right turn
   digitalWrite(motorPin1, HIGH);
   digitalWrite(motorPin2, LOW);
