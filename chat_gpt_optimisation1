@@ -1,0 +1,59 @@
+const int NUM_SENSORS = 3;
+const int trigPins[NUM_SENSORS] = {9, 11, 13};
+const int echoPins[NUM_SENSORS] = {8, 10, 12};
+
+long durations[NUM_SENSORS], cms[NUM_SENSORS], inches[NUM_SENSORS];
+
+void setup() {
+  Serial.begin(9600);
+  for (int i = 0; i < NUM_SENSORS; ++i) {
+    pinMode(trigPins[i], OUTPUT);
+    pinMode(echoPins[i], INPUT);
+  }
+}
+
+void triggerSensor(int trigPin) {
+  digitalWrite(trigPin, LOW);
+  delayMicroseconds(2);
+  digitalWrite(trigPin, HIGH);
+  delayMicroseconds(10);
+  digitalWrite(trigPin, LOW);
+}
+
+long getDuration(int echoPin) {
+  return pulseIn(echoPin, HIGH);
+}
+
+void measureDistance(int sensorIndex) {
+  triggerSensor(trigPins[sensorIndex]);
+  durations[sensorIndex] = getDuration(echoPins[sensorIndex]);
+  cms[sensorIndex] = (durations[sensorIndex] / 2) / 29.1;
+  inches[sensorIndex] = (durations[sensorIndex] / 2) / 74;
+}
+
+void printMeasurement(int sensorIndex) {
+  Serial.print("Sensor");
+  Serial.print(sensorIndex + 1);
+  Serial.print(": ");
+  Serial.print(inches[sensorIndex]);
+  Serial.print("in, ");
+  Serial.print(cms[sensorIndex]);
+  Serial.println("cm");
+}
+
+void loop() {
+  unsigned long startTime = millis(); // Record start time for loop
+  for (int i = 0; i < NUM_SENSORS; ++i) {
+    measureDistance(i);
+    printMeasurement(i);
+  }
+  unsigned long elapsedTime = millis() - startTime; // Calculate time taken for measurements
+  if (elapsedTime <60) {
+    delay(elapsedTime); // Delay to maintain 250ms update rate
+  } else {
+    // If measurements took longer than 250ms, print a warning
+   // Serial.print("Measurements took longer than 250ms: ");
+    Serial.print(elapsedTime);
+    Serial.println("ms");
+  }
+}
