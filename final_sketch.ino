@@ -5,7 +5,7 @@
 # define echoPinF 4      // Forward Sensor
 # define trigPinF 5      // Forward Sensor
 # define echoPinL 7      // Left Sensor
-# define trigPinL 6      // Left Sensor
+# define trigPinL 8      // Left Sensor
 #define motorPin1 8      // Motor driver input 1
 #define motorPin2 9      // Motor driver input 2
 #define motorPin3 10     // Motor driver input 3
@@ -13,7 +13,8 @@
 #define enablePin1 12    // Enable pin for motor 1
 #define enablePin2 13    // Enable pin for motor 2
 
-#define distanceThreshold 20   // Threshold distance to detect obstacle (in centimeters)
+#define frontDistanceThreshold 5   // Threshold distance to detect obstacle (in centimeters)
+#define sideDistanceThreshold 23 
 #define turnDuration 1675      // Duration for turning (in milliseconds)
 
 NewPing sonarR(trigPinR, echoPinR, 400);
@@ -31,7 +32,7 @@ void setup() {
   
   // Initialize motor pins
   pinMode(enablePin1, OUTPUT);
-  pinMode(enablePin2, OUTPUT);
+  pinMode(enablePin2, OUTPUT); 
   pinMode(motorPin1, OUTPUT);
   pinMode(motorPin2, OUTPUT);
   pinMode(motorPin3, OUTPUT);
@@ -50,15 +51,14 @@ void loop() {
   
   // LSRB pathfinding algorithm
   
-  if (leftDistance > distanceThreshold) {
+  if (leftDistance > sideDistanceThreshold) {
     // If left path is free, turn left
     turnLeft();
     delay(turnDuration);
-  } else if (frontDistance > distanceThreshold) {
+  } else if (frontDistance > frontDistanceThreshold) {
     // If left not free, go straight
     moveForward();
-    delay(turnDuration);
-  } else if (rightDistance > distanceThreshold) {
+  } else if (rightDistance > sideDistanceThreshold) {
     // If left and straight not free, turn right
     turnRight();
     delay(turnDuration);
@@ -69,7 +69,7 @@ void loop() {
   }
 }
 
-  void turnRight() {
+  void turnLeft() {
   // Set motor direction for left turn
   digitalWrite(motorPin1, LOW);
   digitalWrite(motorPin2, HIGH);
@@ -85,7 +85,7 @@ void loop() {
   digitalWrite(motorPin4, LOW);
 }
 
-void turnLeft() {
+void turnRight() {
   // Set motor direction for right turn
   digitalWrite(motorPin1, HIGH);
   digitalWrite(motorPin2, LOW);
