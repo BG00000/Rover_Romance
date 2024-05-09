@@ -40,16 +40,20 @@ void setup() {
 }
 
 void loop() {
-  
+
+  digitalWrite(enablePin1, LOW);
+  digitalWrite(enablePin2, LOW);
+  delay(2000);
+
   // set enable pins to HIGH
   digitalWrite(enablePin1, HIGH);
   digitalWrite(enablePin2, HIGH);
   
   // hard code
   moveForward();
-  delay(_);
+  delay(3000);
 
-  turnLeft();
+  /*turnLeft();
   delay(_);
 
   moveForward();
@@ -84,6 +88,7 @@ void loop() {
 
   moveForward();
   delay(_);
+  */
 }
 
   void turnLeft() {
@@ -98,8 +103,8 @@ void loop() {
   // Set motor direction for forward motion
   digitalWrite(motorPin1, HIGH);
   digitalWrite(motorPin2, LOW);
-  digitalWrite(motorPin3, HIGH);
-  digitalWrite(motorPin4, LOW);
+  digitalWrite(motorPin3, LOW);
+  digitalWrite(motorPin4, HIGH);
 }
 
 void turnRight() {
