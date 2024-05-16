@@ -15,7 +15,7 @@
 
 #define frontDistanceThreshold 5   // Threshold distance to detect obstacle (in centimeters)
 #define sideDistanceThreshold 23 
-#define turnDuration 1675      // Duration for turning (in milliseconds)
+#define turnDuration 805      // Duration for turning (in milliseconds)
 
 NewPing sonarR(trigPinR, echoPinR, 400);
 NewPing sonarF(trigPinF, echoPinF, 400);
@@ -85,76 +85,63 @@ void loop() {
   if (frontDistance < frontDistanceThreshold & rightDistance < sideDistanceThreshold & leftDistance > 90) {
   
   // leftPivot90*
-  one();
+    one();
+    delay(turnDuration);
 
-  }
-
-  else if (frontDistance > 90 & rightDistance < sideDistanceThreshold & sideDistanceThreshold < leftDistance < 90) {
-
-  // leftPivot90*
-  two();
-
-  }
-
-  else if (frontDistance < frontDistanceThreshold & rightDistance < sideDistanceThreshold & sideDistanceThreshold < leftDistance < 90) {
+  } else if (frontDistance > 90 & rightDistance < sideDistanceThreshold & sideDistanceThreshold < leftDistance < 90) {
 
   // leftPivot90*
-  three();
- 
-  }
+    two();
+    delay(turnDuration);
 
-  else if (frontDistanceThreshold < frontDistance < 90 & rightDistance < sideDistanceThreshold & leftDistance < sideDistanceThreshold) {
+
+  } else if (frontDistance < frontDistanceThreshold & rightDistance < sideDistanceThreshold & sideDistanceThreshold < leftDistance < 90) {
+
+  // leftPivot90*
+    three();
+    delay(turnDuration);
+
+  } else if (frontDistanceThreshold < frontDistance < 90 & rightDistance < sideDistanceThreshold & leftDistance < sideDistanceThreshold) {
   
   // forwardDrive
-  four();
+    four();
 
-  }
-
-  else if (frontDistanceThreshold < frontDistance < 90 & rightDistance < sideDistanceThreshold & leftDistance > 90) {
+  } else if (frontDistanceThreshold < frontDistance < 90 & rightDistance < sideDistanceThreshold & leftDistance > 90) {
   
   // forwardDrive
-  five();
+    five();
 
-  }
-
-  else if (frontDistance > 90 & rightDistance < sideDistanceThreshold & leftDistance > 90) {
+  } else if (frontDistance > 90 & rightDistance < sideDistanceThreshold & leftDistance > 90) {
   
   // forwardDrive
-  six();
+    six();
 
-  }
-
-  else if (frontDistanceThreshold < frontDistance < 90 & rightDistance > 90 & sideDistanceThreshold < leftDistance < 90) {
+  } else if (frontDistanceThreshold < frontDistance < 90 & rightDistance > 90 & sideDistanceThreshold < leftDistance < 90) {
   
   // forwardDrive
-  seven();
+    seven();
 
-  }
-
-  else if (frontDistanceThreshold < frontDistance < 90 & rightDistance < sideDistanceThreshold & sideDistanceThreshold < leftDistance < 90) {
+  } else if (frontDistanceThreshold < frontDistance < 90 & rightDistance < sideDistanceThreshold & sideDistanceThreshold < leftDistance < 90) {
   
   // forwardDrive
-  eight();
+    eight();
 
-  }
-
-  else if (frontDistanceThreshold < frontDistance < 90 & sideDistanceThreshold < rightDistance < 90 & leftDistance < sideDistanceThreshold) {
+  } else if (frontDistanceThreshold < frontDistance < 90 & sideDistanceThreshold < rightDistance < 90 & leftDistance < sideDistanceThreshold) {
   
   // forwardDrive
-  nine();
+    nine();
 
-  }
-
-  else if (frontDistance < frontDistanceThreshold & sideDistanceThreshold < rightDistance < 90 & leftDistance < sideDistanceThreshold) {
+  } else if (frontDistance < frontDistanceThreshold & sideDistanceThreshold < rightDistance < 90 & leftDistance < sideDistanceThreshold) {
   
   // rightTurn
-  ten();
+    ten();
+    delay(turnDuration);
 
-  }
-
-  else {
+  } else {
 
     uTurn();
+    delay(2*turnDuration);
+
   }
 
 
