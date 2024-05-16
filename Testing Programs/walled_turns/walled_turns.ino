@@ -5,7 +5,7 @@
 # define echoPinF 4      // Forward Sensor
 # define trigPinF 5      // Forward Sensor
 # define echoPinL 7      // Left Sensor
-# define trigPinL 6      // Left Sensor
+# define trigPinL 8      // Left Sensor
 #define motorPin1 8      // Motor driver input 1
 #define motorPin2 9      // Motor driver input 2
 #define motorPin3 10     // Motor driver input 3
@@ -13,8 +13,8 @@
 #define enablePin1 12    // Enable pin for motor 1
 #define enablePin2 13    // Enable pin for motor 2
 
-#define frontDistanceThreshold 2
-#define sideDistanceThreshold 23  // Threshold distance to detect obstacle (in centimeters)
+#define frontDistanceThreshold 2   // Threshold distance to detect obstacle (in centimeters)
+#define sideDistanceThreshold 23 
 #define turnDuration 805      // Duration for turning (in milliseconds)
 
 NewPing sonarR(trigPinR, echoPinR, 400);
@@ -32,13 +32,11 @@ void setup() {
   
   // Initialize motor pins
   pinMode(enablePin1, OUTPUT);
-  pinMode(enablePin2, OUTPUT);
+  pinMode(enablePin2, OUTPUT); 
   pinMode(motorPin1, OUTPUT);
   pinMode(motorPin2, OUTPUT);
   pinMode(motorPin3, OUTPUT);
   pinMode(motorPin4, OUTPUT);
-
-  Serial.begin(9600);
 }
 
 void loop() {
@@ -51,12 +49,12 @@ void loop() {
   digitalWrite(enablePin1, HIGH);
   digitalWrite(enablePin2, HIGH);
   
-  // Pathfinding algorithm
+  // LSRB pathfinding algorithm
   
-  if (leftDistance > sideDistanceThreshold)  {
+  if (leftDistance > sideDistanceThreshold) {
     // If left path is free, turn left
     turnLeft();
-    delay(turnDuration);  
+    delay(turnDuration);
   } else if (frontDistance > frontDistanceThreshold) {
     // If left not free, go straight
     moveForward();
@@ -77,7 +75,6 @@ void moveForward() {
   digitalWrite(motorPin2, LOW);
   digitalWrite(motorPin3, LOW);
   digitalWrite(motorPin4, HIGH);
-  Serial.println("moving forward");
 }
 
 void turnLeft() {
@@ -86,23 +83,20 @@ void turnLeft() {
   digitalWrite(motorPin2, HIGH);
   digitalWrite(motorPin3, LOW);
   digitalWrite(motorPin4, HIGH);
-  Serial.println("turning left");
 }
-
+  
 void turnRight() {
   // Set motor direction for right turn
   digitalWrite(motorPin1, HIGH);
   digitalWrite(motorPin2, LOW);
   digitalWrite(motorPin3, HIGH);
   digitalWrite(motorPin4, LOW);
-  Serial.println("turning right");
 }
 
 void uTurn() {
-  // Set motor direction for u-turn
+  // Set motor direction for u turn
   digitalWrite(motorPin1, HIGH);
   digitalWrite(motorPin2, LOW);
   digitalWrite(motorPin3, HIGH);
   digitalWrite(motorPin4, LOW);
-  Serial.println("u-turning");
 }
