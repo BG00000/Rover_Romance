@@ -61,10 +61,11 @@ void loop() {
    // LSRB pathfinding algorithm
   if (leftDistance > sideDistanceThreshold) {
    unsigned long startTime = millis();
-   while (startTime < 5000) { // Replace 5000 with the time it takes to travel 2 tiles
+   while (millis() - startTime < 5000) { // Replace 5000 with the time it takes to travel 2 tiles
       moveForward();  // Move forward while checking
-      delay(100);      // Short delay to maintain responsiveness
+      delay(100);        // Short delay to maintain responsiveness
       // Update front distance inside the loop
+      double frontDistance = sonarF.ping_cm(); //re update distance
       if (frontDistance < frontDistanceThreshold) {
         break;  // Break if an obstacle is detected
       }
@@ -75,7 +76,6 @@ void loop() {
     moveForward();
   } else if (rightDistance > sideDistanceThreshold) {
     // If left and straight not free, turn right
-    delay(2000);
     turnRight();
     delay(turnDuration);
   } else {
