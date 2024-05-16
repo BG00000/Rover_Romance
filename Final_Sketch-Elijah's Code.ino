@@ -17,7 +17,7 @@
 
 #define frontDistanceThreshold 2   // Threshold distance to detect obstacle (in centimeters)
 #define sideDistanceThreshold 23
-#define turnDuration 805      // Duration for turning (in milliseconds)
+#define turnDuration 500      // Duration for turning (in milliseconds)
 
 
 NewPing sonarR(trigPinR, echoPinR, 400);
