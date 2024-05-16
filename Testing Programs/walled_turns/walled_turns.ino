@@ -13,9 +13,9 @@
 #define enablePin1 12    // Enable pin for motor 1
 #define enablePin2 13    // Enable pin for motor 2
 
-#define frontDistanceThreshold 5   // Threshold distance to detect obstacle (in centimeters)
+#define frontDistanceThreshold 2   // Threshold distance to detect obstacle (in centimeters)
 #define sideDistanceThreshold 23 
-#define turnDuration 1675      // Duration for turning (in milliseconds)
+#define turnDuration 805      // Duration for turning (in milliseconds)
 
 NewPing sonarR(trigPinR, echoPinR, 400);
 NewPing sonarF(trigPinF, echoPinF, 400);
