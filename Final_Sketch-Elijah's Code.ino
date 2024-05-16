@@ -28,9 +28,8 @@ NewPing sonarL(trigPinL, echoPinL, 400);
 void setup() {
 
 
-  Serial.begin(960)
   // Initialize ultrasonic sensor pins
-  // Serial.begin(9600);
+  Serial.begin(9600);
   pinMode(trigPinR, OUTPUT);
   pinMode(echoPinR, INPUT);
   pinMode(trigPinF, OUTPUT);
@@ -61,15 +60,16 @@ void loop() {
    // LSRB pathfinding algorithm
   if (leftDistance > sideDistanceThreshold) {
    unsigned long startTime = millis();
-   while (millis() - startTime < 5000) { // Replace 5000 with the time it takes to travel 2 tiles
+   while (millis() - startTime < 2000) { // Replace 5000 with the time it takes to travel 2 tiles
       moveForward();  // Move forward while checking
-      delay(100);        // Short delay to maintain responsiveness
+      delay(25);        // Short delay to maintain responsiveness
       // Update front distance inside the loop
       double frontDistance = sonarF.ping_cm(); //re update distance
       if (frontDistance < frontDistanceThreshold) {
         break;  // Break if an obstacle is detected
       }
     turnLeft();
+    delay(turnDuration);
    }
   } else if (frontDistance > frontDistanceThreshold) {
     // If left not free, go straight
