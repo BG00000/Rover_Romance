@@ -207,34 +207,35 @@ void ten() {
   digitalWrite(motorPin3, LOW);
   digitalWrite(motorPin4, HIGH);
 }
-// void turnLeft() {
-//   // Set motor direction for left turn
-  // digitalWrite(motorPin1, LOW);
-  // digitalWrite(motorPin2, HIGH);
-  // digitalWrite(motorPin3, HIGH);
-  // digitalWrite(motorPin4, LOW);
-// }
   
-// void moveForward() {
-//   // Set motor direction for forward motion
-  // digitalWrite(motorPin1, HIGH);
-  // digitalWrite(motorPin2, LOW);
-  // digitalWrite(motorPin3, HIGH);
-  // digitalWrite(motorPin4, LOW);
-// }
+void moveForward() {
+  // Set motor direction for forward motion
+  digitalWrite(motorPin1, HIGH);
+  digitalWrite(motorPin2, LOW);
+  digitalWrite(motorPin3, LOW);
+  digitalWrite(motorPin4, HIGH);
+}
 
-// void turnRight() {
-//   // Set motor direction for right turn
-  // digitalWrite(motorPin1, HIGH);
-  // digitalWrite(motorPin2, LOW);
-  // digitalWrite(motorPin3, LOW);
-  // digitalWrite(motorPin4, HIGH);
-// }
-  
-void uTurn() {
-  // Set motor direction for u turn
+void turnLeft() {
+  // Set motor direction for right turn
   digitalWrite(motorPin1, LOW);
   digitalWrite(motorPin2, HIGH);
+  digitalWrite(motorPin3, LOW);
+  digitalWrite(motorPin4, HIGH);
+}
+  
+void turnRight() {
+  // Set motor direction for right turn
+  digitalWrite(motorPin1, HIGH);
+  digitalWrite(motorPin2, LOW);
+  digitalWrite(motorPin3, HIGH);
+  digitalWrite(motorPin4, LOW);
+}
+
+void uTurn() {
+  // Set motor direction for u turn
+  digitalWrite(motorPin1, HIGH);
+  digitalWrite(motorPin2, LOW);
   digitalWrite(motorPin3, HIGH);
   digitalWrite(motorPin4, LOW);
 }
