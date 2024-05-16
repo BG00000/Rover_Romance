@@ -15,7 +15,7 @@
 
 #define frontDistanceThreshold 2
 #define sideDistanceThreshold 23  // Threshold distance to detect obstacle (in centimeters)
-#define turnDuration 1100      // Duration for turning (in milliseconds)
+#define turnDuration 805      // Duration for turning (in milliseconds)
 
 NewPing sonarR(trigPinR, echoPinR, 400);
 NewPing sonarF(trigPinF, echoPinF, 400);
@@ -88,17 +88,6 @@ void turnLeft() {
   digitalWrite(motorPin4, HIGH);
   Serial.println("turning left");
 }
-
-/*void turnLeftCase2() {
-  // Set motor direction for right turn
-  delay(4500);
-  digitalWrite(motorPin1, LOW);
-  digitalWrite(motorPin2, HIGH);
-  digitalWrite(motorPin3, LOW);
-  digitalWrite(motorPin4, HIGH);
-  Serial.println("turning left");
-  
-}*/
 
 void turnRight() {
   // Set motor direction for right turn
