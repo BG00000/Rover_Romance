@@ -67,10 +67,12 @@ void loop() {
       double frontDistance = sonarF.ping_cm(); //re update distance
       if (frontDistance < frontDistanceThreshold) {
         break;  // Break if an obstacle is detected
+        startTime = 0;
       }
+   }
     turnLeft();
     delay(turnDuration);
-   }
+    startTime = 0;
   } else if (frontDistance > frontDistanceThreshold) {
     // If left not free, go straight
     moveForward();
